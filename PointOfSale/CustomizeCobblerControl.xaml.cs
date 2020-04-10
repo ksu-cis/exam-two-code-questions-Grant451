@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ExamTwoCodeQuestions.Data;
 
 namespace ExamTwoQuestions.PointOfSale
 {
@@ -21,6 +22,45 @@ namespace ExamTwoQuestions.PointOfSale
         public CustomizeCobblerControl()
         {
             InitializeComponent();
+            //buttons:
+            BtnCherry.Click += OnChangeFlavor;
+            BtnPeach.Click += OnChangeFlavor;
+            BtnBlueberry.Click += OnChangeFlavor;
+
+        }
+
+        void OnChangeFlavor(object sender, RoutedEventArgs e)
+        {
+
+            //Cobbler
+            //Cobbler cobbler = (Cobbler)DataContextProperty;
+
+            /*
+            Peach,
+            Cherry,
+            Blueberry
+            */
+
+            //if the datacontext is already set to cobbler, I think this should work
+            if (DataContext is Cobbler cob)
+            {
+                if (sender is Button button)
+                {
+                    switch (button.Tag)
+                    {
+                        case "Cherry":
+                            cob.fruit = FruitFilling.Cherry;
+                            break;
+                        case "Blueberry":
+                            cob.fruit = FruitFilling.Blueberry;
+                            break;
+                        case "Peach":
+                            cob.fruit = FruitFilling.Peach;
+                            break;
+                    }
+                }
+            }
+
         }
     }
 }
