@@ -9,7 +9,10 @@ namespace ExamTwoCodeQuestions.Data
         /// <summary>
         /// Gets the price of the item
         /// </summary>
-        double Price { get; }
+        double Price 
+        { 
+            get; 
+        }
         
         /// <summary>
         /// Gets the list of special instructions for the current item

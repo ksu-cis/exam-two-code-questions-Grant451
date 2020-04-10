@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using ExamTwoCodeQuestions.Data;
 using Xunit;
 
@@ -72,5 +73,80 @@ namespace ExamTwoCodeQuestions.DataTests
             var cobbler = new Cobbler();
             Assert.IsAssignableFrom<IOrderItem>(cobbler);
         }
+
+        //#########################(new tests:)
+        [Fact]
+        public void CobblerShouldImplementInotifyPropertyChanged()
+        {
+            var cob = new Cobbler();
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(cob);
+        }
+
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForWithIceCream()
+        {
+            var cob = new Cobbler();
+            Assert.PropertyChanged(cob, "WithIceCream", () =>
+            {
+                cob.WithIceCream = false;
+            });
+
+        }
+
+        [Fact]
+        public void ChangingPeachShouldInvokePropertyChangedForPeach()
+        {
+            var cob = new Cobbler();
+            Assert.PropertyChanged(cob, "Fruit", () => { cob.Fruit = FruitFilling.Peach; });
+        }
+
+        [Fact]
+        public void ChangingCherryShouldInvokePropertyChangedForCherry()
+        {
+            var cob = new Cobbler();
+            Assert.PropertyChanged(cob, "Fruit", () => { cob.Fruit = FruitFilling.Cherry; });
+        }
+
+        [Fact]
+        public void ChangingBlueberryShouldInvokePropertyChangedForBlueberry()
+        {
+            var cob = new Cobbler();
+            Assert.PropertyChanged(cob, "Fruit", () => { cob.Fruit = FruitFilling.Blueberry; });
+        }
+
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForPriceTrueToFalse()
+        {
+            var cob = new Cobbler();
+            Assert.PropertyChanged(cob, "WithIceCream", () =>
+            {
+                cob.WithIceCream = false;
+            });
+            Assert.Equal(4.25, cob.Price);
+
+        }
+
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForPriceFalseToTrue()
+        {
+            var cob = new Cobbler();
+            cob.WithIceCream = false;
+            Assert.PropertyChanged(cob, "WithIceCream", () =>
+            {
+                cob.WithIceCream = true;
+                Assert.Equal(5.32, cob.Price);
+            });
+        }
+
+        [Fact]
+        public void ChangingWithIceCreamShouldInvokePropertyChangedForSpecialInstructions()
+        {
+            var soda = new Cobbler();
+            Assert.PropertyChanged(soda, "SpecialInstructions", () =>
+            {
+                soda.WithIceCream = false;
+            });
+        }
+
     }
 }
