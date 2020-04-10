@@ -21,6 +21,10 @@
             <Button Name="BtnPeach" Tag="Peach" Height="38">Peach</Button>
             <Button Name="BtnCherry" Tag="Cherry" Height="38">Cherry</Button>
             <Button Name="BtnBlueberry" Tag="Blueberry" Height="38">Blueberry</Button>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock TextAlignment="Left" FontSize="15">Current Flavor is:</TextBlock>
+                <TextBox Name="FlavorOutput" Width="100"></TextBox>
+            </StackPanel>
             <CheckBox IsChecked="{Binding Path=WithIceCream}">
                 With Ice Cream
                 <CheckBox.LayoutTransform>

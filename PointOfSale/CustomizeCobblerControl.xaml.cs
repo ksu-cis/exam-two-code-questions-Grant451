@@ -60,6 +60,7 @@ namespace ExamTwoQuestions.PointOfSale
                             cob.fruit = FruitFilling.Peach;
                             break;
                     }
+                    FlavorOutput.Text = cob.fruit.ToString();
                 }
             }
 
